@@ -64,3 +64,5 @@ group :development do
   # gem "spring"
 end
 
+
+gem "dotenv-rails", "~> 2.8"
