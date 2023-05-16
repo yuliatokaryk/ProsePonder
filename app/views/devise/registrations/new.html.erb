@@ -1,41 +1,49 @@
-<h2>Sign up</h2>
+<section>
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900">
+      <%= image_tag ("logo") %>   
+    </a>
+    <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+          Create an account
+        </h1>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "space-y-4 md:space-y-6"}) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <div>
+            <%= f.label "Your first name:", class: "block mb-2 text-sm font-medium text-gray-900" %>
+            <%= f.text_field :first_name, autofocus: true, class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-600 focus:border-gray-600 block w-full p-2.5" %>
+          </div>
 
-<div class="w-1/5">
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"}) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+          <div>
+            <%= f.label "Your last name:", class: "block mb-2 text-sm font-medium text-gray-900" %>
+            <%= f.text_field :last_name, autofocus: true, class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-600 focus:border-gray-600 block w-full p-2.5" %>
+          </div>
+          
+          <div>
+            <%= f.label "Your email:", class: "block mb-2 text-sm font-medium text-gray-900" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-600 focus:border-gray-600 block w-full p-2.5" %>
+          </div>
 
-  <div class="mb-4">
-    <%= f.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+          <div>
+            <%= f.label "Your password:", class: "block mb-2 text-sm font-medium text-gray-900" %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br/>
+            <%= f.password_field :password, autocomplete: "current-password", placeholder: "••••••••", class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-600 focus:border-gray-600 block w-full p-2.5" %>
+          </div>
+
+          <div>
+            <%= f.label "Your password confirmation:", class: "block mb-2 text-sm font-medium text-gray-900" %>
+            <%= f.password_field :password_confirmation, autocomplete: "current-password", placeholder: "••••••••", class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-600 focus:border-gray-600 block w-full p-2.5" %>
+          </div>
+
+          <%= f.submit "Create account", class: "bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+          <p class="text-sm font-light text-gray-500">
+            Already have an account? <%= link_to "Log in", new_user_session_path, class: "font-medium text-primary-600 hover:underline" %>
+          </p>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <div class="mb-6">
-    <%= f.label :password, class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "current-password", class: "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" %>
-  </div>
-
-  <div class="mb-6">
-    <%= f.label :password_confirmation, class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" %>
-  </div>
-
-  <div class="mb-6">
-    <%= f.label :first_name, class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= f.text_field :first_name, autocomplete: "new-password", class: "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" %>
-  </div>
-
-  <div class="mb-6">
-    <%= f.label :last_name, class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= f.text_field :last_name, autocomplete: "new-password", class: "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" %>
-  </div>
-
-  <div class="flex items-center justify-between">
-    <%= f.submit "Sign up", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
-  </div>
-<% end %>
-</div>
-
-<%= render "devise/shared/links" %>
+</section>
