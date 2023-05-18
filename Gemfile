@@ -70,3 +70,5 @@ gem "dotenv-rails", "~> 2.8"
 gem "tailwindcss-rails", "~> 2.0"
 
 gem "devise", "~> 4.9"
+
+gem "state_machines", "~> 0.5.0"

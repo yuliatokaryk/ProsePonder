@@ -41,7 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_143115) do
   create_table "user_books", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "book_id"
-    t.string "state", default: "in progress"
+    t.string "state", default: "reading"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_user_books_on_book_id"
