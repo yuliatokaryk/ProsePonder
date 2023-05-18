@@ -10,19 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_16_092214) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_18_143115) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "books", force: :cascade do |t|
-    t.string "title", null: false
-    t.string "author", default: "unknown", null: false
-    t.text "description"
-    t.datetime "finish", default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.bigint "user_id"
+  create_table "authors", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_books_on_user_id"
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.bigint "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_books_on_author_id"
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id"
+    t.bigint "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_notes_on_book_id"
+    t.index ["user_id"], name: "index_notes_on_user_id"
+  end
+
+  create_table "user_books", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "book_id"
+    t.string "state", default: "in progress"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_user_books_on_book_id"
+    t.index ["user_id"], name: "index_user_books_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,5 +63,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_092214) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "books", "users"
+  add_foreign_key "books", "authors"
+  add_foreign_key "notes", "books"
+  add_foreign_key "notes", "users"
+  add_foreign_key "user_books", "books"
+  add_foreign_key "user_books", "users"
 end
