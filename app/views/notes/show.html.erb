@@ -1,0 +1,5 @@
+<p><%= @note.book.name %></p>
+<p><%= @note.content %></p>
+
+<%= link_to "Edit", edit_note_path(@note) %>
+<%= button_to "Delete", note_path(@note), method: :delete %>
