@@ -3,16 +3,23 @@ class NotesController < ApplicationController
 
   def index
     @notes = Note.all
+    authorize @notes
   end
 
-  def show; end
+  def show
+    authorize @note
+    rescue Pundit::NotAuthorizedError
+    redirect_to root_path, alert: "You are not authorized to view this note."
+  end
 
   def new
     @notes = Note.new
     @books = Book.all
   end
 
-  def edit; end
+  def edit
+    authorize @note
+  end
 
   def create
     @note = Note.new(note_params)
@@ -28,6 +35,8 @@ class NotesController < ApplicationController
   end
 
   def update
+    authorize @note
+
     if @note.update(note_params)
       flash[:notice] = "Note was update"
       redirect_to @note
@@ -37,6 +46,7 @@ class NotesController < ApplicationController
   end
 
   def destroy
+    authorize @note
     @note.destroy
     redirect_to notes_path
   end
