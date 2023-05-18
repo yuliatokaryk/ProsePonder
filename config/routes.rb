@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :books
   resources :authors
   resources :notes
+  resources :user_books
 end
