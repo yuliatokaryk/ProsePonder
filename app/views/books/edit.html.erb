@@ -1,29 +1,18 @@
-<% if @book.errors.any? %>
-  <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
-    <ul class="list-disc">
-      <% @book.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
 <%= form_with(model: @book, local:true, class: 'mx-auto md:w-2/4 my-14 px-2') do |f| %>
-  <div class="flex flex-wrap -mx-3 mb-6 mt-6">
-    <div class="w-full md:w-1/2 px-3">
-      <%= f.label 'title', class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
-      <%= f.text_field :title, class:"sappearance-none block w-full bg-gray-100 text-gray-700 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" %>
-    </div>
-    <div class="w-full md:w-1/2 px-3">
-      <%= f.label 'author', class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
-      <%= f.text_field :author, class:"appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" %>
-    </div>
+  <div class="my-5">
+    <%= f.label 'title' %>
+    <%= f.text_field :title %>
   </div>
-  <div class="flex flex-wrap -mx-3 mb-6 mt-4">
-    <div class="w-full md:w-1/2 px-3">
-      <%= f.label 'description', class: "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" %>
-      <%= f.text_field :description, class:"appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" %>
-    </div>
+
+  <div class="my-5">
+    <%= f.label :author_id %>
+    <%= f.collection_select :author_id, @authors, :id, :name, include_blank: true %>
   </div>
+
+  <div class="my-5">
+    <%= f.label :new_author_name %>
+    <%= f.text_field :new_author_name %>
+  </div>
+
   <%= f.submit "submit" %>
 <% end %>
