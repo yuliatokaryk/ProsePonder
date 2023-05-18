@@ -1,0 +1,6 @@
+<p><%= @book.title %></p>
+<% if @book.author.present? %>
+  <p><%= @book.author.name %></p>
+<% end %>
+<%= link_to "Edit", edit_book_path(@book) %>
+<%= button_to "Delete", book_path(@book), method: :delete %>
