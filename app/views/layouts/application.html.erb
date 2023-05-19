@@ -15,8 +15,10 @@
     <% if user_signed_in? %>
       <%= render "layouts/navbar" %>
     <% end %>
-    <p class="notice"><%= notice %></p> 
-    <p class="alert"><%= alert %></p> 
-    <%= yield %>
+    <main class="max-w-screen-xl m-auto">
+      <p class="notice"><%= notice %></p> 
+      <p class="alert"><%= alert %></p> 
+      <%= yield %>
+    </main>
   </body>
 </html>

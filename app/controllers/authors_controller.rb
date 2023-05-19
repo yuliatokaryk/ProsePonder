@@ -7,22 +7,8 @@ class AuthorsController < ApplicationController
 
   def show; end
 
-  def new
-    @author = Author.new
-  end
-
   def edit; end
 
-  def create
-    @author = Author.new(author_params)
-
-    if @author.save
-      flash[:notice] = "Author was added"
-      redirect_to root_path
-    else
-      render 'new'
-    end
-  end
 
   def update
     if @author.update(author_params)

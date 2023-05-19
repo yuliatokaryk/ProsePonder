@@ -1,0 +1,30 @@
+<div class="text-center mb-4">
+<h2 class="text-2xl font-semibold"><%= @user.full_name %></h2>
+<p class="text-base font-light">your reading journal</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+
+  <div class="col-span-2 m-6 bg-stone-200 rounded overflow-hidden shadow-lg">
+    <div class="px-6 py-4">
+      <div class="font-bold text-xl mb-6">Do you read something new?</div>
+      <%=link_to "Add new book", new_user_book_path, class: "bg-transparent hover:bg-stone-500 text-stone-700 font-semibold hover:text-stone-100 py-2 px-4 border border-stone-700 hover:border-transparent rounded" %>
+    </div>
+    <div class="px-6 pt-4 pb-2">
+      <div class="font-bold text-xl mb-2">Your books in process:</div>
+      <ul>
+      <% @reading_books.each do |book| %>
+        <li><%= book.book.title %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+
+    <div class="m-6 bg-stone-200 rounded overflow-hidden shadow-lg">
+    <div class="px-6 py-4">
+      <div class="font-bold text-xl mb-2">Your finished books:</div>
+    </div>
+  </div>
+</div>
+
+
