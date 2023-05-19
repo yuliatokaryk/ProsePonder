@@ -1,6 +1,6 @@
 <div class="text-center mb-4">
-<h2 class="text-2xl font-semibold"><%= @user.full_name %></h2>
-<p class="text-base font-light">your reading journal</p>
+  <h2 class="text-2xl font-semibold"><%= @user.full_name %></h2>
+  <p class="text-base font-light">your reading journal</p>
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -11,18 +11,54 @@
       <%=link_to "Add new book", new_user_book_path, class: "bg-transparent hover:bg-stone-500 text-stone-700 font-semibold hover:text-stone-100 py-2 px-4 border border-stone-700 hover:border-transparent rounded" %>
     </div>
     <div class="px-6 pt-4 pb-2">
-      <div class="font-bold text-xl mb-2">Your books in process:</div>
-      <ul>
-      <% @reading_books.each do |book| %>
-        <li><%= book.book.title %></li>
+      <% if @reading_books.any? %>
+        <div class="font-bold text-xl mb-2">Your books in process:</div>
+        <div class="flex flex-col">
+          <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+              <div class="overflow-hidden">
+                <table class="min-w-full text-left text-sm font-light">
+                  <tbody>
+                    <% @reading_books.each do |book| %>
+                    <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100">
+                      <td class="whitespace-nowrap px-6 py-4"><%= book.book.title %></td>
+                      <% if book.book.author.present? %>
+                        <td class="whitespace-nowrap px-6 py-4"><%= book.book.author.name %></td>
+                      <% end %>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <div class="font-bold text-xl mb-2">You haven't added any books yet.</div>
       <% end %>
-      </ul>
     </div>
   </div>
 
-    <div class="m-6 bg-stone-200 rounded overflow-hidden shadow-lg">
+  <div class="m-6 bg-stone-200 rounded overflow-hidden shadow-lg">
     <div class="px-6 py-4">
       <div class="font-bold text-xl mb-2">Your finished books:</div>
+
+      <div class="flex flex-col">
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+            <div class="overflow-hidden">
+              <table class="min-w-full text-left text-sm font-light">
+                <tbody>
+                  <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100">
+                    <td class="whitespace-nowrap px-6 py-4">book</td>
+                    <td class="whitespace-nowrap px-6 py-4">book</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

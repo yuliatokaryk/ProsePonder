@@ -32,12 +32,12 @@ class UserBooksController < ApplicationController
         author = nil
       end
       author = Author.find_or_create_by(name: params[:user_book][:new_author_name])
-      book = Book.find_or_create_by(title: params[:user_book][:title], author_id: author)
+      book = Book.find_or_create_by(title: params[:user_book][:title], author: author)
       @user_book.book = book
     end
 
     if @user_book.save
-      redirect_to user_books_path
+      redirect_to root_path
     else
       @books = Book.all
       @authors = Author.all
