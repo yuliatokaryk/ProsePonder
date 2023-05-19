@@ -1,7 +1,7 @@
 <%= form_with(model: @notes, local:true, class: 'mx-auto md:w-2/4 my-14 px-2') do |f| %>
   <div class="my-5">
     <%= f.label 'content' %>
-    <%= f.text_area :content %>
+    <%= f.rich_text_area :content %>
   </div>
 
   <div class="my-5">
