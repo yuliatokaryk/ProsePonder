@@ -13,4 +13,8 @@ class NotePolicy < ApplicationPolicy
   def show?
     user.id == note.user_id # Only allow the owner of the note to view it
   end
+
+  def destroy?
+    show?
+  end
 end
