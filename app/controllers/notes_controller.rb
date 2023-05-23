@@ -1,11 +1,6 @@
 class NotesController < ApplicationController
   before_action :set_note, only: %i[show edit update destroy]
 
-  def index
-    @notes = Note.all
-    authorize @notes
-  end
-
   def show
     authorize @note
     rescue Pundit::NotAuthorizedError
@@ -26,7 +21,7 @@ class NotesController < ApplicationController
 
     if @note.save
       flash[:notice] = "Note was added"
-      redirect_to notes_path
+      redirect_back(fallback_location: root_path)
     else
       flash[:error] = "note wasn't add"
       render 'new'
@@ -47,7 +42,7 @@ class NotesController < ApplicationController
   def destroy
     authorize @note
     @note.destroy
-    redirect_to notes_path
+    redirect_to root_path
   end
 
   private

@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   end
 
   resources :authors, except: [:new]
-  resources :notes, only: [:show]
+  resources :notes
   resources :user_books
 end
