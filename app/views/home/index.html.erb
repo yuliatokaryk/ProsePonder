@@ -4,7 +4,6 @@
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-
   <div class="col-span-2 m-6 bg-stone-200 rounded overflow-hidden shadow-lg">
     <div class="px-6 py-4">
       <div class="font-bold text-xl mb-6">Do you read something new?</div>
@@ -20,11 +19,15 @@
                 <table class="min-w-full text-left text-sm font-light">
                   <tbody>
                     <% @reading_books.each do |book| %>
-                    <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100">
-                      <td class="whitespace-nowrap px-6 py-4"><%= book.book.title %></td>
-                      <% if book.book.author.present? %>
-                        <td class="whitespace-nowrap px-6 py-4"><%= book.book.author.name %></td>
-                      <% end %>
+                      <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100">
+                        <td class="whitespace-nowrap px-6 py-4">
+                          <%= link_to book_path(book.book) do %>
+                            <%= book.book.title %> 
+                            <% if book.book.author.present? %>
+                              (<%= book.book.author.name %>)
+                            <% end %>
+                          <% end %>
+                        </td>
                       </tr>
                     <% end %>
                   </tbody>
