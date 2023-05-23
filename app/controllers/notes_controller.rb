@@ -14,7 +14,6 @@ class NotesController < ApplicationController
 
   def new
     @notes = Note.new
-    @books = Book.all
   end
 
   def edit
@@ -29,7 +28,7 @@ class NotesController < ApplicationController
       flash[:notice] = "Note was added"
       redirect_to notes_path
     else
-      @books = Book.all
+      flash[:error] = "note wasn't add"
       render 'new'
     end
   end

@@ -5,7 +5,10 @@ class BooksController < ApplicationController
     @books = Book.all
   end
 
-  def show; end
+  def show
+    @note = Note.new
+    @user_notes = Note.where(user: current_user, book: @book)
+  end
 
   def edit; end
 
