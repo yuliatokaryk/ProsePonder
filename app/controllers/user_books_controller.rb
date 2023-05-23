@@ -1,11 +1,5 @@
 class UserBooksController < ApplicationController
-  before_action :set_user_book, only: %i[show edit update destroy]
-
-  def index
-    @user_books = UserBook.all
-  end
-
-  def show; end
+  before_action :set_user_book, only: %i[show]
 
   def new
     @user_book = UserBook.new
@@ -13,8 +7,6 @@ class UserBooksController < ApplicationController
     @authors = Author.all
     @book = Book.new
   end
-
-  def edit; end
 
   def create
     @user_book = UserBook.new(user_book_params)
@@ -43,19 +35,6 @@ class UserBooksController < ApplicationController
       @authors = Author.all
       render 'new'
     end
-  end
-
-  def update
-    if @user_book.update(user_book_params)
-      redirect_to @user_book
-    else
-      render 'edit'
-    end
-  end
-
-  def destroy
-    @user_book.destroy
-    redirect_to user_books_path
   end
 
   private

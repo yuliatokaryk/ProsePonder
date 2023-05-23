@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     resources :notes, only: [:create]
   end
 
-  resources :authors, except: [:new]
   resources :notes
   resources :user_books
 end
