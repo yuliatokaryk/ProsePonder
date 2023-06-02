@@ -1,24 +1,30 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Clone repository
 
-Things you may want to cover:
+```
+git clone git@github.com:yuliatokaryk/ProsePonder.git
+```
 
-* Ruby version
+2. Run bundle
+```
+bundle install
+```
 
-* System dependencies
+3. Install Tailwind
+```
+./bin/rails tailwindcss:install
+```
 
-* Configuration
+4. Create file .env and copy .env.example to .env
 
-* Database creation
+5. Create db and run migrations
+```
+rails db:create
+rails db:migrate
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+6. Run App on your localhost
+```
+bin/dev
+```
