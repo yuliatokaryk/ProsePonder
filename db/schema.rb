@@ -53,13 +53,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_115412) do
   end
 
   create_table "authors", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "books", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -67,7 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_115412) do
   end
 
   create_table "notes", force: :cascade do |t|
-    t.text "content"
+    t.text "content", null: false
     t.bigint "user_id"
     t.bigint "book_id"
     t.datetime "created_at", null: false
